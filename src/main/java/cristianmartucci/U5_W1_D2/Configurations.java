@@ -14,6 +14,9 @@ import java.util.UUID;
 @Configuration
 @PropertySource("application.properties")
 public class Configurations {
+    @Value("${cost.covered}")
+    private double covered;
+
     @Bean(name = "tomato")
     public Topping getTomato(){
         return new Topping("Tomato", 50, 0.59);
@@ -90,12 +93,12 @@ public class Configurations {
     }
 
     @Bean(name = "order1")
-    public Order getOrder1(@Value("${cost.covered}") double covered){
+    public Order getOrder1(){
         return new Order(UUID.fromString("10c5a836-9c63-4738-8592-f2252cdfc9a8"), getTable1(), Arrays.asList(getHawaiianPizza(),getSalamiPizza(), getWater(), getLemonade()), OrderState.IN_PROGRESS, 2, LocalDateTime.now(), covered);
     }
 
     @Bean(name = "order2")
-    public Order getOrder2(@Value("${cost.covered}") double covered){
+    public Order getOrder2(){
         return new Order(UUID.fromString("37d98088-3f68-47ec-81e1-0beeea7a3bcb"), getTable2(), Arrays.asList(getHawaiianPizza(),getSalamiPizza(), getPizzaMargherita(), getWater(), getLemonade(), getWine()), OrderState.IN_PROGRESS, 3, LocalDateTime.now(), covered);
     }
 }

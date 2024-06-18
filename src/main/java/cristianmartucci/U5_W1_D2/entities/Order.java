@@ -34,7 +34,6 @@ public class Order {
     }
 
     public void setTotale_price() {
-//        System.out.println(cost_covered);
         this.totale_price += this.numbered_covered * cost_covered;
         for (Product product: products){
             this.totale_price += product.getPrice();
