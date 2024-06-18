@@ -2,7 +2,6 @@ package cristianmartucci.U5_W1_D2.entities;
 
 import cristianmartucci.U5_W1_D2.enums.OrderState;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Value;
 
 
 import java.time.LocalDateTime;
@@ -21,22 +20,21 @@ public class Order {
     private LocalDateTime time_order;
     @Setter(AccessLevel.NONE)
     private double totale_price;
-
-    @Value("${cost.covered}")
     private double cost_covered;
 
-    public Order(UUID order_id, Table table, List<Product> products, OrderState order_state, int numbered_covered, LocalDateTime time_order) {
+    public Order(UUID order_id, Table table, List<Product> products, OrderState order_state, int numbered_covered, LocalDateTime time_order, double cost_covered) {
         this.order_id = order_id;
         this.table = table;
         this.products = products;
         this.order_state = order_state;
         this.numbered_covered = numbered_covered;
         this.time_order = time_order;
+        this.cost_covered = cost_covered;
         this.setTotale_price();
     }
 
     public void setTotale_price() {
-        System.out.println(this.numbered_covered * cost_covered);
+//        System.out.println(cost_covered);
         this.totale_price += this.numbered_covered * cost_covered;
         for (Product product: products){
             this.totale_price += product.getPrice();

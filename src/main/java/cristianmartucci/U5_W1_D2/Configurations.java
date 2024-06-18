@@ -2,6 +2,7 @@ package cristianmartucci.U5_W1_D2;
 
 import cristianmartucci.U5_W1_D2.entities.*;
 import cristianmartucci.U5_W1_D2.enums.OrderState;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -89,19 +90,12 @@ public class Configurations {
     }
 
     @Bean(name = "order1")
-    public Order getOrder1(){
-        return new Order(UUID.fromString("10c5a836-9c63-4738-8592-f2252cdfc9a8"), getTable1(), Arrays.asList(getHawaiianPizza(),getSalamiPizza(), getWater(), getLemonade()), OrderState.IN_PROGRESS, 2, LocalDateTime.now());
+    public Order getOrder1(@Value("${cost.covered}") double covered){
+        return new Order(UUID.fromString("10c5a836-9c63-4738-8592-f2252cdfc9a8"), getTable1(), Arrays.asList(getHawaiianPizza(),getSalamiPizza(), getWater(), getLemonade()), OrderState.IN_PROGRESS, 2, LocalDateTime.now(), covered);
     }
 
     @Bean(name = "order2")
-    public Order getOrder2(){
-        return new Order(UUID.fromString("37d98088-3f68-47ec-81e1-0beeea7a3bcb"), getTable2(), Arrays.asList(getHawaiianPizza(),getSalamiPizza(), getPizzaMargherita(), getWater(), getLemonade(), getWine()), OrderState.IN_PROGRESS, 2, LocalDateTime.now());
+    public Order getOrder2(@Value("${cost.covered}") double covered){
+        return new Order(UUID.fromString("37d98088-3f68-47ec-81e1-0beeea7a3bcb"), getTable2(), Arrays.asList(getHawaiianPizza(),getSalamiPizza(), getPizzaMargherita(), getWater(), getLemonade(), getWine()), OrderState.IN_PROGRESS, 3, LocalDateTime.now(), covered);
     }
-
-//
-//    @Bean
-//    public Menu getMenu(){
-//        return new Menu(Arrays.asList(getPizzaMargherita(), getHawaiianPizza(), getSalamiPizza()), Arrays.asList(getCheese(), getHam(), getOnions(), getPineapple(), getSalami()), Arrays.asList(getLemonade(), getWater(), getWine()));
-//    }
-
 }

@@ -17,7 +17,7 @@ public class MyRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(U5W1D2Application.class);
 
-        System.out.println(menu);
+        System.out.println(menu + "\n");
 
         Order order1 = (Order) context.getBean("order1");
         System.out.println(order1);
